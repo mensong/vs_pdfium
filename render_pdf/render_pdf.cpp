@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 	try {
 		RenderPdfOptions options(argc, argv);
 		if (options.invalid()) {
-			std::cout << "usage:\nrender_pdf.exe inputfile.pdf [output_file.png]" << std::endl;
+			std::cout << "usage:\nrender_pdf.exe inputfile.pdf [-o output_file.png]" << std::endl;
 			return -1;
 		}
 		InitPdfium(options);
