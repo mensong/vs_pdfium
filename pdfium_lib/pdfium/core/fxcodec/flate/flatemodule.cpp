@@ -48,7 +48,7 @@ namespace {
 static constexpr uint32_t kMaxTotalOutSize = 1024 * 1024 * 1024;  // 1 GiB
 
 uint32_t FlateGetPossiblyTruncatedTotalOut(z_stream* context) {
-  return std::min(pdfium::base::saturated_cast<uint32_t>(context->total_out),
+  return (std::min)(pdfium::base::saturated_cast<uint32_t>(context->total_out),
                   kMaxTotalOutSize);
 }
 
@@ -174,7 +174,7 @@ void CLZWDecoder::DecodeString(uint32_t code) {
 }
 
 void CLZWDecoder::ExpandDestBuf(uint32_t additional_size) {
-  FX_SAFE_UINT32 new_size = std::max(dest_buf_size_ / 2, additional_size);
+  FX_SAFE_UINT32 new_size = (std::max)(dest_buf_size_ / 2, additional_size);
   new_size += dest_buf_size_;
   if (!new_size.IsValid()) {
     dest_buf_.reset();
@@ -458,7 +458,7 @@ void TIFF_PredictLine(uint8_t* dest_buf,
                       int Colors,
                       int Columns) {
   if (BitsPerComponent == 1) {
-    int row_bits = std::min(BitsPerComponent * Colors * Columns,
+    int row_bits = (std::min)(BitsPerComponent * Colors * Columns,
                             pdfium::base::checked_cast<int>(row_size * 8));
     int index_pre = 0;
     int col_pre = 0;
@@ -528,7 +528,7 @@ void FlateUncompress(pdfium::span<const uint8_t> src_buf,
 
   const uint32_t kMaxInitialAllocSize = 10000000;
   uint32_t guess_size = orig_size ? orig_size : src_buf.size() * 2;
-  guess_size = std::min(guess_size, kMaxInitialAllocSize);
+  guess_size = (std::min)(guess_size, kMaxInitialAllocSize);
 
   uint32_t buf_size = guess_size;
   uint32_t last_buf_size = buf_size;
@@ -574,7 +574,7 @@ void FlateUncompress(pdfium::span<const uint8_t> src_buf,
     if (i == result_tmp_bufs.size() - 1)
       tmp_buf_size = last_buf_size;
 
-    uint32_t cp_size = std::min(tmp_buf_size, remaining);
+    uint32_t cp_size = (std::min)(tmp_buf_size, remaining);
     memcpy(result_buf.get() + result_pos, tmp_buf.get(), cp_size);
     result_pos += cp_size;
     remaining -= cp_size;

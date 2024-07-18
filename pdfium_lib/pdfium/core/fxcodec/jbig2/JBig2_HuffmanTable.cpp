@@ -202,7 +202,7 @@ bool CJBig2_HuffmanTable::ParseFromCodedBuffer(CJBig2_BitStream* pStream) {
     return false;
 
   RANGELEN[NTEMP] = 32;
-  if (low == std::numeric_limits<int>::min())
+  if (low == (std::numeric_limits<int>::min)())
     return false;
 
   RANGELOW[NTEMP] = low - 1;

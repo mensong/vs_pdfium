@@ -74,10 +74,10 @@ void FX_RECT::Intersect(const FX_RECT& src) {
   FX_RECT src_n = src;
   src_n.Normalize();
   Normalize();
-  left = std::max(left, src_n.left);
-  top = std::max(top, src_n.top);
-  right = std::min(right, src_n.right);
-  bottom = std::min(bottom, src_n.bottom);
+  left = (std::max)(left, src_n.left);
+  top = (std::max)(top, src_n.top);
+  right = (std::min)(right, src_n.right);
+  bottom = (std::min)(bottom, src_n.bottom);
   if (left > right || top > bottom) {
     left = top = right = bottom = 0;
   }
@@ -97,10 +97,10 @@ CFX_FloatRect CFX_FloatRect::GetBBox(const CFX_PointF* pPoints, int nPoints) {
   float min_y = pPoints->y;
   float max_y = pPoints->y;
   for (int i = 1; i < nPoints; i++) {
-    min_x = std::min(min_x, pPoints[i].x);
-    max_x = std::max(max_x, pPoints[i].x);
-    min_y = std::min(min_y, pPoints[i].y);
-    max_y = std::max(max_y, pPoints[i].y);
+    min_x = (std::min)(min_x, pPoints[i].x);
+    max_x = (std::max)(max_x, pPoints[i].x);
+    min_y = (std::min)(min_y, pPoints[i].y);
+    max_y = (std::max)(max_y, pPoints[i].y);
   }
   return CFX_FloatRect(min_x, min_y, max_x, max_y);
 }
@@ -116,10 +116,10 @@ void CFX_FloatRect::Intersect(const CFX_FloatRect& other_rect) {
   Normalize();
   CFX_FloatRect other = other_rect;
   other.Normalize();
-  left = std::max(left, other.left);
-  bottom = std::max(bottom, other.bottom);
-  right = std::min(right, other.right);
-  top = std::min(top, other.top);
+  left = (std::max)(left, other.left);
+  bottom = (std::max)(bottom, other.bottom);
+  right = (std::min)(right, other.right);
+  top = (std::min)(top, other.top);
   if (left > right || bottom > top)
     *this = CFX_FloatRect();
 }
@@ -128,10 +128,10 @@ void CFX_FloatRect::Union(const CFX_FloatRect& other_rect) {
   Normalize();
   CFX_FloatRect other = other_rect;
   other.Normalize();
-  left = std::min(left, other.left);
-  bottom = std::min(bottom, other.bottom);
-  right = std::max(right, other.right);
-  top = std::max(top, other.top);
+  left = (std::min)(left, other.left);
+  bottom = (std::min)(bottom, other.bottom);
+  right = (std::max)(right, other.right);
+  top = (std::max)(top, other.top);
 }
 
 FX_RECT CFX_FloatRect::GetOuterRect() const {
@@ -190,10 +190,10 @@ bool CFX_FloatRect::Contains(const CFX_FloatRect& other_rect) const {
 }
 
 void CFX_FloatRect::UpdateRect(const CFX_PointF& point) {
-  left = std::min(left, point.x);
-  bottom = std::min(bottom, point.y);
-  right = std::max(right, point.x);
-  top = std::max(top, point.y);
+  left = (std::min)(left, point.x);
+  bottom = (std::min)(bottom, point.y);
+  right = (std::max)(right, point.x);
+  top = (std::max)(top, point.y);
 }
 
 void CFX_FloatRect::Inflate(float x, float y) {
@@ -414,10 +414,10 @@ CFX_FloatRect CFX_Matrix::TransformRect(const CFX_FloatRect& rect) const {
   float new_top = points[0].y;
   float new_bottom = points[0].y;
   for (size_t i = 1; i < pdfium::size(points); i++) {
-    new_right = std::max(new_right, points[i].x);
-    new_left = std::min(new_left, points[i].x);
-    new_top = std::max(new_top, points[i].y);
-    new_bottom = std::min(new_bottom, points[i].y);
+    new_right = (std::max)(new_right, points[i].x);
+    new_left = (std::min)(new_left, points[i].x);
+    new_top = (std::max)(new_top, points[i].y);
+    new_bottom = (std::min)(new_bottom, points[i].y);
   }
 
   return CFX_FloatRect(new_left, new_bottom, new_right, new_top);

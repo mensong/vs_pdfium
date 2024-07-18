@@ -1208,7 +1208,7 @@ bool CFX_RenderDevice::DrawNormalText(int nChars,
     }
     ncols /= 3;
     int x_subpixel = static_cast<int>(glyph.m_fDeviceOrigin.x * 3) % 3;
-    int start_col = std::max(point->x, 0);
+    int start_col = (std::max)(point->x, 0);
     FX_SAFE_INT32 end_col_safe = point->x;
     end_col_safe += ncols;
     if (!end_col_safe.IsValid())

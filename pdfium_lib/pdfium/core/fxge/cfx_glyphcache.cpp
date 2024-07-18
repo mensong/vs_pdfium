@@ -212,7 +212,7 @@ std::unique_ptr<CFX_GlyphBitmap> CFX_GlyphCache::RenderGlyph(
     }
   } else {
     memset(pDestBuf, 0, dest_pitch * bmheight);
-    int rowbytes = std::min(abs(src_pitch), dest_pitch);
+    int rowbytes = (std::min)(abs(src_pitch), dest_pitch);
     for (int row = 0; row < bmheight; row++)
       memcpy(pDestBuf + row * dest_pitch, pSrcBuf + row * src_pitch, rowbytes);
   }

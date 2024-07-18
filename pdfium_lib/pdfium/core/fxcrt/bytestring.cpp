@@ -292,7 +292,7 @@ bool ByteString::operator<(const char* ptr) const {
 
   size_t len = GetLength();
   size_t other_len = ptr ? strlen(ptr) : 0;
-  int result = memcmp(c_str(), ptr, std::min(len, other_len));
+  int result = memcmp(c_str(), ptr, (std::min)(len, other_len));
   return result < 0 || (result == 0 && len < other_len);
 }
 
@@ -306,7 +306,7 @@ bool ByteString::operator<(const ByteString& other) const {
 
   size_t len = GetLength();
   size_t other_len = other.GetLength();
-  int result = memcmp(c_str(), other.c_str(), std::min(len, other_len));
+  int result = memcmp(c_str(), other.c_str(), (std::min)(len, other_len));
   return result < 0 || (result == 0 && len < other_len);
 }
 
@@ -350,7 +350,7 @@ void ByteString::ReallocBeforeWrite(size_t nNewLength) {
 
   RetainPtr<StringData> pNewData(StringData::Create(nNewLength));
   if (m_pData) {
-    size_t nCopyLength = std::min(m_pData->m_nDataLength, nNewLength);
+    size_t nCopyLength = (std::min)(m_pData->m_nDataLength, nNewLength);
     pNewData->CopyContents(m_pData->m_String, nCopyLength);
     pNewData->m_nDataLength = nCopyLength;
   } else {
@@ -376,7 +376,7 @@ void ByteString::ReleaseBuffer(size_t nNewLength) {
   if (!m_pData)
     return;
 
-  nNewLength = std::min(nNewLength, m_pData->m_nAllocLength);
+  nNewLength = (std::min)(nNewLength, m_pData->m_nAllocLength);
   if (nNewLength == 0) {
     clear();
     return;
@@ -411,7 +411,7 @@ pdfium::span<char> ByteString::GetBuffer(size_t nMinBufLength) {
   if (m_pData->CanOperateInPlace(nMinBufLength))
     return pdfium::span<char>(m_pData->m_String, m_pData->m_nAllocLength);
 
-  nMinBufLength = std::max(nMinBufLength, m_pData->m_nDataLength);
+  nMinBufLength = (std::max)(nMinBufLength, m_pData->m_nDataLength);
   if (nMinBufLength == 0)
     return pdfium::span<char>();
 
@@ -457,7 +457,7 @@ void ByteString::Concat(const char* pSrcData, size_t nSrcLen) {
     return;
   }
 
-  size_t nConcatLen = std::max(m_pData->m_nDataLength / 2, nSrcLen);
+  size_t nConcatLen = (std::max)(m_pData->m_nDataLength / 2, nSrcLen);
   RetainPtr<StringData> pNewData(
       StringData::Create(m_pData->m_nDataLength + nConcatLen));
   pNewData->CopyContents(*m_pData);
@@ -675,7 +675,7 @@ int ByteString::Compare(ByteStringView str) const {
 
   size_t this_len = m_pData->m_nDataLength;
   size_t that_len = str.GetLength();
-  size_t min_len = std::min(this_len, that_len);
+  size_t min_len = (std::min)(this_len, that_len);
   int result = memcmp(m_pData->m_String, str.unterminated_c_str(), min_len);
   if (result != 0)
     return result;

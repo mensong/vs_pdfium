@@ -238,7 +238,7 @@ bool CGdiPrinterDriver::DrawDeviceText(
   const WideString wsName =
       WideString::FromUTF8(pFont->GetFaceName().AsStringView());
   size_t iNameLen =
-      std::min(wsName.GetLength(), static_cast<size_t>(LF_FACESIZE - 1));
+      (std::min)(wsName.GetLength(), static_cast<size_t>(LF_FACESIZE - 1));
   memcpy(lf.lfFaceName, wsName.c_str(), sizeof(lf.lfFaceName[0]) * iNameLen);
   lf.lfFaceName[iNameLen] = 0;
 

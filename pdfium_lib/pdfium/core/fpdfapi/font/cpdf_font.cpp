@@ -416,8 +416,8 @@ int CPDF_Font::TT2PDF(int m, FXFT_FaceRec* face) {
 
   return static_cast<int>(
       pdfium::clamp((m * 1000.0 + upm / 2) / upm,
-                    static_cast<double>(std::numeric_limits<int>::min()),
-                    static_cast<double>(std::numeric_limits<int>::max())));
+                    static_cast<double>((std::numeric_limits<int>::min)()),
+                    static_cast<double>((std::numeric_limits<int>::max)())));
 }
 
 // static

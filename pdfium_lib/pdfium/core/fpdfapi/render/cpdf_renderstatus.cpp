@@ -1311,8 +1311,8 @@ void CPDF_RenderStatus::CompositeDIBitmap(
       pClone->CompositeBitmap(0, 0, pClone->GetWidth(), pClone->GetHeight(),
                               pForeBitmap, rect.left, rect.top,
                               BlendMode::kNormal, nullptr, false);
-      left = std::min(left, 0);
-      top = std::min(top, 0);
+      left = (std::min)(left, 0);
+      top = (std::min)(top, 0);
       if (pDIBitmap->IsMask()) {
         pClone->CompositeMask(0, 0, pClone->GetWidth(), pClone->GetHeight(),
                               pDIBitmap, mask_argb, left, top, blend_mode,
@@ -1502,7 +1502,7 @@ FX_ARGB CPDF_RenderStatus::GetBackColor(const CPDF_Dictionary* pSMaskDict,
   // Store Color Space Family to use in CPDF_RenderStatus::Initialize().
   *pCSFamily = family;
 
-  uint32_t comps = std::max(8u, pCS->CountComponents());
+  uint32_t comps = (std::max)(8u, pCS->CountComponents());
   size_t count = std::min<size_t>(8, pBC->size());
   std::vector<float> floats = ReadArrayElementsToVector(pBC, count);
   floats.resize(comps);

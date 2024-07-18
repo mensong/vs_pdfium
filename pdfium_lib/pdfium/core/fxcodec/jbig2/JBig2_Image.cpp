@@ -214,8 +214,8 @@ void CJBig2_Image::SubImageFast(int32_t x,
                                 int32_t h,
                                 CJBig2_Image* pImage) {
   int32_t m = BitIndexToByte(x);
-  int32_t bytes_to_copy = std::min(pImage->m_nStride, m_nStride - m);
-  int32_t lines_to_copy = std::min(pImage->m_nHeight, m_nHeight - y);
+  int32_t bytes_to_copy = (std::min)(pImage->m_nStride, m_nStride - m);
+  int32_t lines_to_copy = (std::min)(pImage->m_nHeight, m_nHeight - y);
   for (int32_t j = 0; j < lines_to_copy; j++)
     memcpy(pImage->GetLineUnsafe(j), GetLineUnsafe(y + j) + m, bytes_to_copy);
 }
@@ -227,8 +227,8 @@ void CJBig2_Image::SubImageSlow(int32_t x,
                                 CJBig2_Image* pImage) {
   int32_t m = BitIndexToAlignedByte(x);
   int32_t n = x & 31;
-  int32_t bytes_to_copy = std::min(pImage->m_nStride, m_nStride - m);
-  int32_t lines_to_copy = std::min(pImage->m_nHeight, m_nHeight - y);
+  int32_t bytes_to_copy = (std::min)(pImage->m_nStride, m_nStride - m);
+  int32_t lines_to_copy = (std::min)(pImage->m_nHeight, m_nHeight - y);
   for (int32_t j = 0; j < lines_to_copy; j++) {
     const uint8_t* pLineSrc = GetLineUnsafe(y + j);
     uint8_t* pLineDst = pImage->GetLineUnsafe(j);
@@ -297,8 +297,8 @@ bool CJBig2_Image::ComposeToInternal(CJBig2_Image* pDst,
   if (ys0 >= ys1 || xs0 >= xs1)
     return false;
 
-  int32_t xd0 = std::max(x, 0);
-  int32_t yd0 = std::max(y, 0);
+  int32_t xd0 = (std::max)(x, 0);
+  int32_t yd0 = (std::max)(y, 0);
   int32_t w = xs1 - xs0;
   int32_t h = ys1 - ys0;
   int32_t xd1 = xd0 + w;

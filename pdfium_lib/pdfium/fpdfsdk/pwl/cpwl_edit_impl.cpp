@@ -1469,7 +1469,7 @@ void CPWL_EditImpl::OnVK_HOME(bool bShift, bool bCtrl) {
     SetCaretInfo();
   } else {
     if (!m_SelState.IsEmpty()) {
-      SetCaret(std::min(m_SelState.BeginPos, m_SelState.EndPos));
+      SetCaret((std::min)(m_SelState.BeginPos, m_SelState.EndPos));
       SelectNone();
       ScrollToCaret();
       SetCaretInfo();
@@ -1506,7 +1506,7 @@ void CPWL_EditImpl::OnVK_END(bool bShift, bool bCtrl) {
     SetCaretInfo();
   } else {
     if (!m_SelState.IsEmpty()) {
-      SetCaret(std::max(m_SelState.BeginPos, m_SelState.EndPos));
+      SetCaret((std::max)(m_SelState.BeginPos, m_SelState.EndPos));
       SelectNone();
       ScrollToCaret();
       SetCaretInfo();

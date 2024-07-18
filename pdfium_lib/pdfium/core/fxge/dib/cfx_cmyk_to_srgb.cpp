@@ -1715,9 +1715,9 @@ std::tuple<uint8_t, uint8_t, uint8_t> AdobeCMYK_to_sRGB1(uint8_t c,
   fix_g += (kCMYK[pos][1] - kCMYK[k1_pos][1]) * k_rate / 32;
   fix_b += (kCMYK[pos][2] - kCMYK[k1_pos][2]) * k_rate / 32;
 
-  fix_r = std::max(fix_r, 0);
-  fix_g = std::max(fix_g, 0);
-  fix_b = std::max(fix_b, 0);
+  fix_r = (std::max)(fix_r, 0);
+  fix_g = (std::max)(fix_g, 0);
+  fix_b = (std::max)(fix_b, 0);
 
   return std::make_tuple(fix_r >> 8, fix_g >> 8, fix_b >> 8);
 }

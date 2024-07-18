@@ -116,9 +116,9 @@ CPDF_DefaultAppearance::GetColor() {
     return {type, ArgbEncode(255, r, g, b)};
   }
   if (*type == CFX_Color::kCMYK) {
-    float r = 1.0f - std::min(1.0f, values[0] + values[3]);
-    float g = 1.0f - std::min(1.0f, values[1] + values[3]);
-    float b = 1.0f - std::min(1.0f, values[2] + values[3]);
+    float r = 1.0f - (std::min)(1.0f, values[0] + values[3]);
+    float g = 1.0f - (std::min)(1.0f, values[1] + values[3]);
+    float b = 1.0f - (std::min)(1.0f, values[2] + values[3]);
     return {type, ArgbEncode(255, static_cast<int>(r * 255 + 0.5f),
                              static_cast<int>(g * 255 + 0.5f),
                              static_cast<int>(b * 255 + 0.5f))};

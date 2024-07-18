@@ -75,8 +75,8 @@ constexpr PDF_PSOpName kPsOpNames[] = {
 float RoundHalfUp(float f) {
   if (std::isnan(f))
     return 0;
-  if (f > std::numeric_limits<float>::max() - 0.5f)
-    return std::numeric_limits<float>::max();
+  if (f > (std::numeric_limits<float>::max)() - 0.5f)
+    return (std::numeric_limits<float>::max)();
   return floor(f + 0.5f);
 }
 

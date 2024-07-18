@@ -82,7 +82,7 @@ void CFX_BinaryBuf::ExpandBuf(size_t add_size) {
   if (m_AllocSize >= new_size.ValueOrDie())
     return;
 
-  size_t alloc_step = std::max(static_cast<size_t>(128),
+  size_t alloc_step = (std::max)(static_cast<size_t>(128),
                                m_AllocStep ? m_AllocStep : m_AllocSize / 4);
   new_size += alloc_step - 1;  // Quantize, don't combine these lines.
   new_size /= alloc_step;

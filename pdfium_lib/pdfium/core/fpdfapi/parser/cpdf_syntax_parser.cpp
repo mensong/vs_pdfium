@@ -483,7 +483,7 @@ ByteString CPDF_SyntaxParser::GetKeyword() {
 }
 
 void CPDF_SyntaxParser::SetPos(FX_FILESIZE pos) {
-  m_Pos = std::min(pos, m_FileLen);
+  m_Pos = (std::min)(pos, m_FileLen);
 }
 
 RetainPtr<CPDF_Object> CPDF_SyntaxParser::GetObjectBody(

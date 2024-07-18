@@ -57,8 +57,8 @@ FX_RECT GetGlyphsBBox(const std::vector<TextGlyphPos>& glyphs, int anti_alias) {
       continue;
 
     if (bStarted) {
-      rect.left = std::min(rect.left, point.value().x);
-      rect.top = std::min(rect.top, point.value().y);
+      rect.left = (std::min)(rect.left, point.value().x);
+      rect.top = (std::min)(rect.top, point.value().y);
       rect.right = pdfium::base::ValueOrDieForType<int32_t>(
           pdfium::base::CheckMax(rect.right, char_right));
       rect.bottom = pdfium::base::ValueOrDieForType<int32_t>(

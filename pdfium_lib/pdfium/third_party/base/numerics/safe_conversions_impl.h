@@ -271,7 +271,7 @@ struct NarrowingRange {
     return value;
   }
 
-  static constexpr Dst max() { return Adjust(Bounds<Dst>::max()); }
+  static constexpr Dst max() { return Adjust((Bounds<Dst>::max)()); }
   static constexpr Dst lowest() { return Adjust(Bounds<Dst>::lowest()); }
 };
 
@@ -402,7 +402,7 @@ template <typename Dst,
 constexpr RangeCheck DstRangeRelationToSrcRange(Src value) {
   static_assert(std::is_arithmetic<Src>::value, "Argument must be numeric.");
   static_assert(std::is_arithmetic<Dst>::value, "Result must be numeric.");
-  static_assert(Bounds<Dst>::lowest() < Bounds<Dst>::max(), "");
+  static_assert(Bounds<Dst>::lowest() < (Bounds<Dst>::max)(), "");
   return DstRangeRelationToSrcRangeImpl<Dst, Src, Bounds>::Check(value);
 }
 
@@ -814,8 +814,8 @@ constexpr bool SafeCompare(const L lhs, const R rhs) {
 
 template <typename Dst, typename Src>
 constexpr bool IsMaxInRangeForNumericType() {
-  return IsGreaterOrEqual<Dst, Src>::Test(std::numeric_limits<Dst>::max(),
-                                          std::numeric_limits<Src>::max());
+  return IsGreaterOrEqual<Dst, Src>::Test((std::numeric_limits<Dst>::max)(),
+                                          (std::numeric_limits<Src>::max)());
 }
 
 template <typename Dst, typename Src>
@@ -827,8 +827,8 @@ constexpr bool IsMinInRangeForNumericType() {
 template <typename Dst, typename Src>
 constexpr Dst CommonMax() {
   return !IsMaxInRangeForNumericType<Dst, Src>()
-             ? Dst(std::numeric_limits<Dst>::max())
-             : Dst(std::numeric_limits<Src>::max());
+             ? Dst((std::numeric_limits<Dst>::max)())
+             : Dst((std::numeric_limits<Src>::max)());
 }
 
 template <typename Dst, typename Src>

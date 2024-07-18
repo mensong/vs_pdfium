@@ -83,7 +83,7 @@ bool CFX_FileBufferArchive::WriteBlock(const void* pBuf, size_t size) {
   const uint8_t* buffer = reinterpret_cast<const uint8_t*>(pBuf);
   size_t temp_size = size;
   while (temp_size) {
-    size_t buf_size = std::min(kArchiveBufferSize - current_length_, temp_size);
+    size_t buf_size = (std::min)(kArchiveBufferSize - current_length_, temp_size);
     memcpy(buffer_.data() + current_length_, buffer, buf_size);
 
     current_length_ += buf_size;
@@ -265,7 +265,7 @@ CPDF_Creator::Stage CPDF_Creator::WriteDoc_Stage1() {
       FX_FILESIZE src_size = m_SavedOffset;
       m_pParser->GetSyntax()->SetPos(0);
       while (src_size) {
-        const FX_FILESIZE block_size = std::min(kBufferSize, src_size);
+        const FX_FILESIZE block_size = (std::min)(kBufferSize, src_size);
         if (!m_pParser->GetSyntax()->ReadBlock(buffer.data(), block_size)) {
           return Stage::kInvalid;
         }

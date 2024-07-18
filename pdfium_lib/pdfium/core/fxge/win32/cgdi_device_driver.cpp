@@ -50,7 +50,7 @@ HPEN CreateExtPen(const CFX_GraphStateData* pGraphState,
     scale = fabs(pMatrix->a) > fabs(pMatrix->b) ? fabs(pMatrix->a)
                                                 : fabs(pMatrix->b);
   }
-  float width = std::max(scale * pGraphState->m_LineWidth, 1.0f);
+  float width = (std::max)(scale * pGraphState->m_LineWidth, 1.0f);
 
   uint32_t PenStyle = PS_GEOMETRIC;
   if (!pGraphState->m_DashArray.empty())
@@ -93,7 +93,7 @@ HPEN CreateExtPen(const CFX_GraphStateData* pGraphState,
       dashes[i] = FXSYS_roundf(
           pMatrix ? pMatrix->TransformDistance(pGraphState->m_DashArray[i])
                   : pGraphState->m_DashArray[i]);
-      dashes[i] = std::max(dashes[i], 1U);
+      dashes[i] = (std::max)(dashes[i], 1U);
     }
   }
   return ExtCreatePen(PenStyle, (DWORD)ceil(width), &lb,

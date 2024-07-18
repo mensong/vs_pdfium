@@ -60,27 +60,27 @@ std::pair<float, float> CPWL_Icon::GetScale() {
 
   switch (scale_method) {
     case CPDF_IconFit::ScaleMethod::kAlways:
-      fHScale = fPlateWidth / std::max(fImageWidth, 1.0f);
-      fVScale = fPlateHeight / std::max(fImageHeight, 1.0f);
+      fHScale = fPlateWidth / (std::max)(fImageWidth, 1.0f);
+      fVScale = fPlateHeight / (std::max)(fImageHeight, 1.0f);
       break;
     case CPDF_IconFit::ScaleMethod::kBigger:
       if (fPlateWidth < fImageWidth)
-        fHScale = fPlateWidth / std::max(fImageWidth, 1.0f);
+        fHScale = fPlateWidth / (std::max)(fImageWidth, 1.0f);
       if (fPlateHeight < fImageHeight)
-        fVScale = fPlateHeight / std::max(fImageHeight, 1.0f);
+        fVScale = fPlateHeight / (std::max)(fImageHeight, 1.0f);
       break;
     case CPDF_IconFit::ScaleMethod::kSmaller:
       if (fPlateWidth > fImageWidth)
-        fHScale = fPlateWidth / std::max(fImageWidth, 1.0f);
+        fHScale = fPlateWidth / (std::max)(fImageWidth, 1.0f);
       if (fPlateHeight > fImageHeight)
-        fVScale = fPlateHeight / std::max(fImageHeight, 1.0f);
+        fVScale = fPlateHeight / (std::max)(fImageHeight, 1.0f);
       break;
     case CPDF_IconFit::ScaleMethod::kNever:
       break;
   }
 
   if (m_pIconFit && m_pIconFit->IsProportionalScale()) {
-    float min_scale = std::min(fHScale, fVScale);
+    float min_scale = (std::min)(fHScale, fVScale);
     fHScale = min_scale;
     fVScale = min_scale;
   }

@@ -121,13 +121,13 @@ void IccModule::Translate(CLcmsCmm* pTransform,
   // apply some member of m_hTransform to the input. We need to go over all the
   // places which set transform to verify that only |nSrcComponents| are used.
   if (pTransform->IsLab()) {
-    std::vector<double> inputs(std::max(nSrcComponents, 16u));
+    std::vector<double> inputs((std::max)(nSrcComponents, 16u));
     for (uint32_t i = 0; i < nSrcComponents; ++i)
       inputs[i] = pSrcValues[i];
     cmsDoTransform(pTransform->transform(), inputs.data(), output, 1);
   } else {
     std::vector<uint8_t, FxAllocAllocator<uint8_t>> inputs(
-        std::max(nSrcComponents, 16u));
+        (std::max)(nSrcComponents, 16u));
     for (uint32_t i = 0; i < nSrcComponents; ++i) {
       inputs[i] =
           pdfium::clamp(static_cast<int>(pSrcValues[i] * 255.0f), 0, 255);

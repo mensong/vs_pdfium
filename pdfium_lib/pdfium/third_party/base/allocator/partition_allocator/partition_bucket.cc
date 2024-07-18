@@ -139,7 +139,7 @@ uint8_t PartitionBucket::get_system_pages_per_slot_span() {
     DCHECK(!(slot_size % SystemPageSize()));
     best_pages = static_cast<uint16_t>(slot_size / SystemPageSize());
     // TODO(ajwong): Should this be checking against
-    // MaxSystemPagesPerSlotSpan() or numeric_limits<uint8_t>::max?
+    // MaxSystemPagesPerSlotSpan() or (numeric_limits<uint8_t>::max)?
     // http://crbug.com/776537
     CHECK(best_pages < (1 << 8));
     return static_cast<uint8_t>(best_pages);

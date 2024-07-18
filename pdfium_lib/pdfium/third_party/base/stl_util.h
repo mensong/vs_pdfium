@@ -153,7 +153,7 @@ class ScopedSetInsertion {
 // std::clamp(), some day.
 template <class T>
 constexpr const T& clamp(const T& v, const T& lo, const T& hi) {
-  return std::min(std::max(v, lo), hi);
+  return (std::min)((std::max)(v, lo), hi);
 }
 
 // Safely allocate a 1-dim vector big enough for |w| by |h| or die.

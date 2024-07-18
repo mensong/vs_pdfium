@@ -488,8 +488,8 @@ bool CPDF_DIB::GetDecodeAndMaskArray(bool* bDefaultDecode, bool* bColorKey) {
       for (uint32_t i = 0; i < m_nComponents; i++) {
         int min_num = pArray->GetIntegerAt(i * 2);
         int max_num = pArray->GetIntegerAt(i * 2 + 1);
-        m_CompData[i].m_ColorKeyMin = std::max(min_num, 0);
-        m_CompData[i].m_ColorKeyMax = std::min(max_num, max_data);
+        m_CompData[i].m_ColorKeyMin = (std::max)(min_num, 0);
+        m_CompData[i].m_ColorKeyMax = (std::min)(max_num, max_data);
       }
     }
     *bColorKey = true;
@@ -891,7 +891,7 @@ void CPDF_DIB::LoadPalette() {
 
   int palette_count = 1 << bits;
   // Using at least 16 elements due to the call m_pColorSpace->GetRGB().
-  std::vector<float> color_values(std::max(m_nComponents, 16u));
+  std::vector<float> color_values((std::max)(m_nComponents, 16u));
   for (int i = 0; i < palette_count; i++) {
     int color_data = i;
     for (uint32_t j = 0; j < m_nComponents; j++) {
@@ -949,7 +949,7 @@ void CPDF_DIB::TranslateScanline24bpp(uint8_t* dest_scan,
     return;
 
   // Using at least 16 elements due to the call m_pColorSpace->GetRGB().
-  std::vector<float> color_values(std::max(m_nComponents, 16u));
+  std::vector<float> color_values((std::max)(m_nComponents, 16u));
   float R = 0.0f;
   float G = 0.0f;
   float B = 0.0f;
@@ -1038,9 +1038,9 @@ bool CPDF_DIB::TranslateScanline24bppDefaultDecode(
         src_bit_pos += m_bpc;
         unsigned int B = GetBits8(src_scan, src_bit_pos, m_bpc);
         src_bit_pos += m_bpc;
-        R = std::min(R, max_data);
-        G = std::min(G, max_data);
-        B = std::min(B, max_data);
+        R = (std::min)(R, max_data);
+        G = (std::min)(G, max_data);
+        B = (std::min)(B, max_data);
         dest_scan[dest_byte_pos] = B * 255 / max_data;
         dest_scan[dest_byte_pos + 1] = G * 255 / max_data;
         dest_scan[dest_byte_pos + 2] = R * 255 / max_data;

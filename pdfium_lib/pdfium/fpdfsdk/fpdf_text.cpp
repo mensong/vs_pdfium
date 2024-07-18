@@ -294,7 +294,7 @@ FPDF_EXPORT int FPDF_CALLCONV FPDFText_GetText(FPDF_TEXTPAGE page,
   if (char_available <= 0)
     return 0;
 
-  char_count = std::min(char_count, char_available);
+  char_count = (std::min)(char_count, char_available);
   if (char_count == 0) {
     // Writing out "", which has a character count of 1 due to the NUL.
     *result = '\0';
@@ -469,7 +469,7 @@ FPDF_EXPORT int FPDF_CALLCONV FPDFLink_GetURL(FPDF_PAGELINK link_page,
   if (!buffer || buflen <= 0)
     return required;
 
-  int size = std::min(required, buflen);
+  int size = (std::min)(required, buflen);
   if (size > 0) {
     int buf_size = size * sizeof(unsigned short);
     memcpy(buffer, cbUTF16URL.c_str(), buf_size);

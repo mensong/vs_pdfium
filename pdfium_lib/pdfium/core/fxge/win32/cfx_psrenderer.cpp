@@ -569,7 +569,7 @@ bool CFX_PSRenderer::DrawText(int nChars,
 
   // Do not send near zero font sizes to printers. See crbug.com/767343.
   float scale =
-      std::min(mtObject2Device.GetXUnit(), mtObject2Device.GetYUnit());
+      (std::min)(mtObject2Device.GetXUnit(), mtObject2Device.GetYUnit());
   static constexpr float kEpsilon = 0.01f;
   if (std::fabs(font_size * scale) < kEpsilon)
     return true;

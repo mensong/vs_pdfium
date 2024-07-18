@@ -135,7 +135,7 @@ unsigned long CPDF_Dest::GetNumParams() const {
 
   unsigned long maxParamsForFitType = g_sZoomModeMaxParamCount[GetZoomMode()];
   unsigned long numParamsInArray = m_pArray->size() - 2;
-  return std::min(maxParamsForFitType, numParamsInArray);
+  return (std::min)(maxParamsForFitType, numParamsInArray);
 }
 
 float CPDF_Dest::GetParam(int index) const {

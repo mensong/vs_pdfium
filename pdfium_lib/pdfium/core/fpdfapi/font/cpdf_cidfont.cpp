@@ -222,7 +222,7 @@ void LoadMetricsArray(const CPDF_Array* pArray,
     if (pObjArray) {
       if (width_status != 1)
         return;
-      if (first_code > std::numeric_limits<int>::max() -
+      if (first_code > (std::numeric_limits<int>::max)() -
                            pdfium::CollectionSize<int>(*pObjArray)) {
         width_status = 0;
         continue;
@@ -508,9 +508,9 @@ FX_RECT CPDF_CIDFont::GetCharBBox(uint32_t charcode) {
                            cbox.xMax * 1000 / pixel_size_x,
                            cbox.yMin * 1000 / pixel_size_y);
           }
-          rect.top = std::min(rect.top,
+          rect.top = (std::min)(rect.top,
                               static_cast<int>(FXFT_Get_Face_Ascender(face)));
-          rect.bottom = std::max(
+          rect.bottom = (std::max)(
               rect.bottom, static_cast<int>(FXFT_Get_Face_Descender(face)));
           FT_Done_Glyph(glyph);
         }
@@ -529,7 +529,7 @@ FX_RECT CPDF_CIDFont::GetCharBBox(uint32_t charcode) {
         if (rect.top <= kMaxRectTop)
           rect.top += rect.top / 64;
         else
-          rect.top = std::numeric_limits<int>::max();
+          rect.top = (std::numeric_limits<int>::max)();
       }
     }
   }

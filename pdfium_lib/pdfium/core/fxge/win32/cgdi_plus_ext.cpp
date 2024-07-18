@@ -351,7 +351,7 @@ Gdiplus::GpPen* GdipCreatePenImpl(const CFX_GraphStateData* pGraphState,
     float unit = pMatrix
                      ? 1.0f / ((pMatrix->GetXUnit() + pMatrix->GetYUnit()) / 2)
                      : 1.0f;
-    width = std::max(width, unit);
+    width = (std::max)(width, unit);
   }
   Gdiplus::GpPen* pPen = nullptr;
   CallFunc(GdipCreatePen1)((Gdiplus::ARGB)argb, width, Gdiplus::UnitWorld,
@@ -505,7 +505,7 @@ class GpStream final : public IStream {
 
     size_t bytes_left = m_InterStream.tellp() - m_ReadPos;
     size_t bytes_out =
-        std::min(pdfium::base::checked_cast<size_t>(cb), bytes_left);
+        (std::min)(pdfium::base::checked_cast<size_t>(cb), bytes_left);
     memcpy(output, m_InterStream.str().c_str() + m_ReadPos, bytes_out);
     m_ReadPos += bytes_out;
     if (pcbRead)

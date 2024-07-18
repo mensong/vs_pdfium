@@ -434,10 +434,10 @@ class CFX_RectF {
     float r = right();
     float b = bottom();
 
-    left = std::min(left, x);
-    top = std::min(top, y);
-    r = std::max(r, x);
-    b = std::max(b, y);
+    left = (std::min)(left, x);
+    top = (std::min)(top, y);
+    r = (std::max)(r, x);
+    b = (std::max)(b, y);
 
     width = r - left;
     height = b - top;
@@ -447,10 +447,10 @@ class CFX_RectF {
     float r = right();
     float b = bottom();
 
-    left = std::min(left, rt.left);
-    top = std::min(top, rt.top);
-    r = std::max(r, rt.right());
-    b = std::max(b, rt.bottom());
+    left = (std::min)(left, rt.left);
+    top = (std::min)(top, rt.top);
+    r = (std::max)(r, rt.right());
+    b = (std::max)(b, rt.bottom());
 
     width = r - left;
     height = b - top;
@@ -459,10 +459,10 @@ class CFX_RectF {
     float r = right();
     float b = bottom();
 
-    left = std::max(left, rt.left);
-    top = std::max(top, rt.top);
-    r = std::min(r, rt.right());
-    b = std::min(b, rt.bottom());
+    left = (std::max)(left, rt.left);
+    top = (std::max)(top, rt.top);
+    r = (std::min)(r, rt.right());
+    b = (std::min)(b, rt.bottom());
 
     width = r - left;
     height = b - top;

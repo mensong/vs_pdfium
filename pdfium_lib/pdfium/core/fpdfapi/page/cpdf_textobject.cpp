@@ -273,14 +273,14 @@ CFX_PointF CPDF_TextObject::CalcPositionData(float horz_scale) {
     FX_RECT char_rect = pFont->GetCharBBox(charcode);
     float charwidth;
     if (!bVertWriting) {
-      min_y = std::min(
-          min_y, static_cast<float>(std::min(char_rect.top, char_rect.bottom)));
-      max_y = std::max(
-          max_y, static_cast<float>(std::max(char_rect.top, char_rect.bottom)));
+      min_y = (std::min)(
+          min_y, static_cast<float>((std::min)(char_rect.top, char_rect.bottom)));
+      max_y = (std::max)(
+          max_y, static_cast<float>((std::max)(char_rect.top, char_rect.bottom)));
       float char_left = curpos + char_rect.left * fontsize / 1000;
       float char_right = curpos + char_rect.right * fontsize / 1000;
-      min_x = std::min(min_x, std::min(char_left, char_right));
-      max_x = std::max(max_x, std::max(char_left, char_right));
+      min_x = (std::min)(min_x, (std::min)(char_left, char_right));
+      max_x = (std::max)(max_x, (std::max)(char_left, char_right));
       charwidth = pFont->GetCharWidthF(charcode) * fontsize / 1000;
     } else {
       uint16_t cid = pCIDFont->CIDFromCharCode(charcode);
@@ -289,14 +289,14 @@ CFX_PointF CPDF_TextObject::CalcPositionData(float horz_scale) {
       char_rect.right -= vertical_origin.x;
       char_rect.top -= vertical_origin.y;
       char_rect.bottom -= vertical_origin.y;
-      min_x = std::min(
-          min_x, static_cast<float>(std::min(char_rect.left, char_rect.right)));
-      max_x = std::max(
-          max_x, static_cast<float>(std::max(char_rect.left, char_rect.right)));
+      min_x = (std::min)(
+          min_x, static_cast<float>((std::min)(char_rect.left, char_rect.right)));
+      max_x = (std::max)(
+          max_x, static_cast<float>((std::max)(char_rect.left, char_rect.right)));
       float char_top = curpos + char_rect.top * fontsize / 1000;
       float char_bottom = curpos + char_rect.bottom * fontsize / 1000;
-      min_y = std::min(min_y, std::min(char_top, char_bottom));
-      max_y = std::max(max_y, std::max(char_top, char_bottom));
+      min_y = (std::min)(min_y, (std::min)(char_top, char_bottom));
+      max_y = (std::max)(max_y, (std::max)(char_top, char_bottom));
       charwidth = pCIDFont->GetVertWidth(cid) * fontsize / 1000;
     }
     curpos += charwidth;

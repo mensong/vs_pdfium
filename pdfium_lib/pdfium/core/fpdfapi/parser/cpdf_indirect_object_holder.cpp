@@ -52,7 +52,7 @@ CPDF_Object* CPDF_IndirectObjectHolder::GetOrParseIndirectObject(
   }
 
   pNewObj->SetObjNum(objnum);
-  m_LastObjNum = std::max(m_LastObjNum, objnum);
+  m_LastObjNum = (std::max)(m_LastObjNum, objnum);
   insert_result.first->second = std::move(pNewObj);
   return insert_result.first->second.Get();
 }
@@ -86,7 +86,7 @@ bool CPDF_IndirectObjectHolder::ReplaceIndirectObjectIfHigherGeneration(
 
   pObj->SetObjNum(objnum);
   obj_holder = std::move(pObj);
-  m_LastObjNum = std::max(m_LastObjNum, objnum);
+  m_LastObjNum = (std::max)(m_LastObjNum, objnum);
   return true;
 }
 

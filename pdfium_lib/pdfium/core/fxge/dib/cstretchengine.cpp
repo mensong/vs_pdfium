@@ -66,8 +66,8 @@ bool CStretchEngine::CWeightTable::Calc(int dest_len,
             static_cast<int>(floor(static_cast<float>(src_pos) - 1.0f / 2));
         pixel_weights.m_SrcEnd =
             static_cast<int>(floor(static_cast<float>(src_pos) + 1.0f / 2));
-        pixel_weights.m_SrcStart = std::max(pixel_weights.m_SrcStart, src_min);
-        pixel_weights.m_SrcEnd = std::min(pixel_weights.m_SrcEnd, src_max - 1);
+        pixel_weights.m_SrcStart = (std::max)(pixel_weights.m_SrcStart, src_min);
+        pixel_weights.m_SrcEnd = (std::min)(pixel_weights.m_SrcEnd, src_max - 1);
         if (pixel_weights.m_SrcStart == pixel_weights.m_SrcEnd) {
           pixel_weights.m_Weights[0] = 65536;
         } else {
@@ -79,8 +79,8 @@ bool CStretchEngine::CWeightTable::Calc(int dest_len,
         }
       } else {
         int pixel_pos = static_cast<int>(floor(static_cast<float>(src_pos)));
-        pixel_weights.m_SrcStart = std::max(pixel_pos, src_min);
-        pixel_weights.m_SrcEnd = std::min(pixel_pos, src_max - 1);
+        pixel_weights.m_SrcStart = (std::max)(pixel_pos, src_min);
+        pixel_weights.m_SrcEnd = (std::min)(pixel_pos, src_max - 1);
         pixel_weights.m_Weights[0] = 65536;
       }
     }
@@ -91,12 +91,12 @@ bool CStretchEngine::CWeightTable::Calc(int dest_len,
     PixelWeight& pixel_weights = *GetPixelWeight(dest_pixel);
     double src_start = dest_pixel * scale + base;
     double src_end = src_start + scale;
-    int start_i = floor(std::min(src_start, src_end));
-    int end_i = floor(std::max(src_start, src_end));
-    start_i = std::max(start_i, src_min);
-    end_i = std::min(end_i, src_max - 1);
+    int start_i = floor((std::min)(src_start, src_end));
+    int end_i = floor((std::max)(src_start, src_end));
+    start_i = (std::max)(start_i, src_min);
+    end_i = (std::min)(end_i, src_max - 1);
     if (start_i > end_i) {
-      start_i = std::min(start_i, src_max - 1);
+      start_i = (std::min)(start_i, src_max - 1);
       pixel_weights.m_SrcStart = start_i;
       pixel_weights.m_SrcEnd = start_i;
       continue;
@@ -108,9 +108,9 @@ bool CStretchEngine::CWeightTable::Calc(int dest_len,
       double dest_end = (j + 1 - base) / scale;
       if (dest_start > dest_end)
         std::swap(dest_start, dest_end);
-      double area_start = std::max(dest_start, static_cast<double>(dest_pixel));
-      double area_end = std::min(dest_end, static_cast<double>(dest_pixel + 1));
-      double weight = std::max(0.0, area_end - area_start);
+      double area_start = (std::max)(dest_start, static_cast<double>(dest_pixel));
+      double area_end = (std::min)(dest_end, static_cast<double>(dest_pixel + 1));
+      double weight = (std::max)(0.0, area_end - area_start);
       if (weight == 0 && j == end_i) {
         --pixel_weights.m_SrcEnd;
         break;

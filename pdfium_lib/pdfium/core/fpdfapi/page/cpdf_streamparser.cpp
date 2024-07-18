@@ -464,7 +464,7 @@ ByteString CPDF_StreamParser::ReadString() {
 
             return ByteString(
                 buf.str().c_str(),
-                std::min(static_cast<size_t>(buf.tellp()), kMaxStringLength));
+                (std::min)(static_cast<size_t>(buf.tellp()), kMaxStringLength));
           }
           parlevel--;
           buf << ')';
@@ -546,7 +546,7 @@ ByteString CPDF_StreamParser::ReadString() {
 
   return ByteString(
       buf.str().c_str(),
-      std::min(static_cast<size_t>(buf.tellp()), kMaxStringLength));
+      (std::min)(static_cast<size_t>(buf.tellp()), kMaxStringLength));
 }
 
 ByteString CPDF_StreamParser::ReadHexString() {
@@ -581,7 +581,7 @@ ByteString CPDF_StreamParser::ReadHexString() {
 
   return ByteString(
       buf.str().c_str(),
-      std::min(static_cast<size_t>(buf.tellp()), kMaxStringLength));
+      (std::min)(static_cast<size_t>(buf.tellp()), kMaxStringLength));
 }
 
 bool CPDF_StreamParser::PositionIsInBounds() const {

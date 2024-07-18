@@ -63,7 +63,7 @@ void CPDF_CryptoHandler::CryptBlock(bool bEncrypt,
       memcpy(key1 + m_KeyLen + 5, "sAlT", 4);
     size_t len = m_Cipher == FXCIPHER_AES ? m_KeyLen + 9 : m_KeyLen + 5;
     CRYPT_MD5Generate({key1, len}, realkey);
-    realkeylen = std::min(m_KeyLen + 5, sizeof(realkey));
+    realkeylen = (std::min)(m_KeyLen + 5, sizeof(realkey));
   }
   if (m_Cipher == FXCIPHER_AES) {
     CRYPT_AESSetKey(m_pAESContext.get(),
@@ -136,7 +136,7 @@ void* CPDF_CryptoHandler::CryptStart(uint32_t objnum,
   uint8_t realkey[16];
   size_t len = m_Cipher == FXCIPHER_AES ? m_KeyLen + 9 : m_KeyLen + 5;
   CRYPT_MD5Generate({key1, len}, realkey);
-  size_t realkeylen = std::min(m_KeyLen + 5, sizeof(realkey));
+  size_t realkeylen = (std::min)(m_KeyLen + 5, sizeof(realkey));
 
   if (m_Cipher == FXCIPHER_AES) {
     AESCryptContext* pContext = FX_Alloc(AESCryptContext, 1);

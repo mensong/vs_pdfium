@@ -154,10 +154,10 @@ float GetMinMaxValue(const std::vector<CFX_FloatRect>& array,
   float fRet = pArray[0];
   if (type == MAX) {
     for (size_t i = 1; i < nRects; i++)
-      fRet = std::max(fRet, pArray[i]);
+      fRet = (std::max)(fRet, pArray[i]);
   } else {
     for (size_t i = 1; i < nRects; i++)
-      fRet = std::min(fRet, pArray[i]);
+      fRet = (std::min)(fRet, pArray[i]);
   }
   return fRet;
 }
@@ -284,10 +284,10 @@ FPDF_EXPORT int FPDF_CALLCONV FPDFPage_Flatten(FPDF_PAGE page, int nFlag) {
   if (rcOriginalCB.IsEmpty())
     rcOriginalCB = rcOriginalMB;
 
-  rcMerger.left = std::max(rcMerger.left, rcOriginalMB.left);
-  rcMerger.right = std::min(rcMerger.right, rcOriginalMB.right);
-  rcMerger.bottom = std::max(rcMerger.bottom, rcOriginalMB.bottom);
-  rcMerger.top = std::min(rcMerger.top, rcOriginalMB.top);
+  rcMerger.left = (std::max)(rcMerger.left, rcOriginalMB.left);
+  rcMerger.right = (std::min)(rcMerger.right, rcOriginalMB.right);
+  rcMerger.bottom = (std::max)(rcMerger.bottom, rcOriginalMB.bottom);
+  rcMerger.top = (std::min)(rcMerger.top, rcOriginalMB.top);
 
   pPageDict->SetRectFor(pdfium::page_object::kMediaBox, rcOriginalMB);
   pPageDict->SetRectFor(pdfium::page_object::kCropBox, rcOriginalCB);

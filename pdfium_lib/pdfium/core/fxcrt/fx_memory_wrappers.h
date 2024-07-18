@@ -55,7 +55,7 @@ struct FxAllocAllocator {
   }
   void deallocate(pointer p, size_type n) { FX_Free(p); }
   size_type max_size() const noexcept {
-    return std::numeric_limits<size_type>::max() / sizeof(value_type);
+    return ((std::numeric_limits<size_type>::max))() / sizeof(value_type);
   }
 
   template <class U, class... Args>

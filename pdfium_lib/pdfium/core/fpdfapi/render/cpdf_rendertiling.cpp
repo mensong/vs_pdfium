@@ -108,7 +108,7 @@ RetainPtr<CFX_DIBitmap> CPDF_RenderTiling::Draw(
       floor((clip_box_p.top - pPattern->bbox().bottom) / pPattern->y_step()));
 
   // Make sure we can fit the needed width * height into an int.
-  if (height > std::numeric_limits<int>::max() / width)
+  if (height > (std::numeric_limits<int>::max)() / width)
     return nullptr;
 
   CFX_RenderDevice* pDevice = pRenderStatus->GetRenderDevice();

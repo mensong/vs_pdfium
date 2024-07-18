@@ -96,7 +96,7 @@ void* AllocOrDie(size_t num_members, size_t member_size) {
 }
 
 void* AllocOrDie2D(size_t w, size_t h, size_t member_size) {
-  if (w >= std::numeric_limits<size_t>::max() / h)
+  if (w >= (std::numeric_limits<size_t>::max()) / h)
     FX_OutOfMemoryTerminate(0);  // Never returns.
 
   return AllocOrDie(w * h, member_size);
@@ -136,7 +136,7 @@ void* CallocOrDie(size_t num_members, size_t member_size) {
 }
 
 void* CallocOrDie2D(size_t w, size_t h, size_t member_size) {
-  if (w >= std::numeric_limits<size_t>::max() / h)
+  if (w >= (std::numeric_limits<size_t>::max)() / h)
     FX_OutOfMemoryTerminate(0);  // Never returns.
 
   return CallocOrDie(w * h, member_size);

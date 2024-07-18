@@ -152,7 +152,7 @@ class StringViewTemplate {
       return 0;
 
     uint32_t strid = 0;
-    size_t size = std::min(static_cast<size_t>(4), m_Span.size());
+    size_t size = (std::min)(static_cast<size_t>(4), m_Span.size());
     for (size_t i = 0; i < size; i++)
       strid = strid * 256 + m_Span[i];
 
@@ -242,7 +242,7 @@ class StringViewTemplate {
     int result =
         FXSYS_cmp(reinterpret_cast<const CharType*>(m_Span.data()),
                   reinterpret_cast<const CharType*>(that.m_Span.data()),
-                  std::min(m_Span.size(), that.m_Span.size()));
+                  (std::min)(m_Span.size(), that.m_Span.size()));
     return result < 0 || (result == 0 && m_Span.size() < that.m_Span.size());
   }
 
@@ -250,7 +250,7 @@ class StringViewTemplate {
     int result =
         FXSYS_cmp(reinterpret_cast<const CharType*>(m_Span.data()),
                   reinterpret_cast<const CharType*>(that.m_Span.data()),
-                  std::min(m_Span.size(), that.m_Span.size()));
+                  (std::min)(m_Span.size(), that.m_Span.size()));
     return result > 0 || (result == 0 && m_Span.size() > that.m_Span.size());
   }
 

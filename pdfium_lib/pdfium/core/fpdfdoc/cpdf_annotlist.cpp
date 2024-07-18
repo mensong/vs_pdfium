@@ -109,8 +109,8 @@ std::unique_ptr<CPDF_Annot> CreatePopupAnnot(CPDF_Document* pDocument,
     // Place the popup below and to the right of the annotation without getting
     // clipped by page edges.
     popupRect.Translate(
-        std::min(rect.left, pPage->GetPageWidth() - popupRect.Width()),
-        std::max(rect.bottom - popupRect.Height(), 0.f));
+        (std::min)(rect.left, pPage->GetPageWidth() - popupRect.Width()),
+        (std::max)(rect.bottom - popupRect.Height(), 0.f));
   }
 
   pAnnotDict->SetRectFor(pdfium::annotation::kRect, popupRect);

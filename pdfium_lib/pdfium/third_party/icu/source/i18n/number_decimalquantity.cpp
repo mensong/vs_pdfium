@@ -501,9 +501,9 @@ int64_t DecimalQuantity::toLong(bool truncateIfOverflow) const {
     // if (dq.fitsInLong()) { /* use dq.toLong() */ } else { /* use some fallback */ }
     // Fallback behavior upon truncateIfOverflow is to truncate at 17 digits.
     uint64_t result = 0L;
-    int32_t upperMagnitude = std::min(scale + precision, lOptPos) - 1;
+    int32_t upperMagnitude = (std::min)(scale + precision, lOptPos) - 1;
     if (truncateIfOverflow) {
-        upperMagnitude = std::min(upperMagnitude, 17);
+        upperMagnitude = (std::min)(upperMagnitude, 17);
     }
     for (int32_t magnitude = upperMagnitude; magnitude >= 0; magnitude--) {
         result = result * 10 + getDigitPos(magnitude - scale);
@@ -517,9 +517,9 @@ int64_t DecimalQuantity::toLong(bool truncateIfOverflow) const {
 uint64_t DecimalQuantity::toFractionLong(bool includeTrailingZeros) const {
     uint64_t result = 0L;
     int32_t magnitude = -1;
-    int32_t lowerMagnitude = std::max(scale, rOptPos);
+    int32_t lowerMagnitude = (std::max)(scale, rOptPos);
     if (includeTrailingZeros) {
-        lowerMagnitude = std::min(lowerMagnitude, rReqPos);
+        lowerMagnitude = (std::min)(lowerMagnitude, rReqPos);
     }
     for (; magnitude >= lowerMagnitude && result <= 1e18L; magnitude--) {
         result = result * 10 + getDigitPos(magnitude - scale);
@@ -808,8 +808,8 @@ UnicodeString DecimalQuantity::toScientificString() const {
     }
     // NOTE: It is not safe to add to lOptPos (aka maxInt) or subtract from
     // rOptPos (aka -maxFrac) due to overflow.
-    int32_t upperPos = std::min(precision + scale, lOptPos) - scale - 1;
-    int32_t lowerPos = std::max(scale, rOptPos) - scale;
+    int32_t upperPos = (std::min)(precision + scale, lOptPos) - scale - 1;
+    int32_t lowerPos = (std::max)(scale, rOptPos) - scale;
     int32_t p = upperPos;
     result.append(u'0' + getDigitPos(p));
     if ((--p) >= lowerPos) {

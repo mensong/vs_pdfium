@@ -51,7 +51,7 @@ uint32_t GetValidatedOutputsCount(
     const std::vector<std::unique_ptr<CPDF_Function>>& funcs,
     const RetainPtr<CPDF_ColorSpace>& pCS) {
   uint32_t funcs_outputs = CountOutputsFromFunctions(funcs);
-  return funcs_outputs ? std::max(funcs_outputs, pCS->CountComponents()) : 0;
+  return funcs_outputs ? (std::max)(funcs_outputs, pCS->CountComponents()) : 0;
 }
 
 std::array<FX_ARGB, kShadingSteps> GetShadingSteps(
@@ -338,13 +338,13 @@ void DrawGouraud(const RetainPtr<CFX_DIBitmap>& pBitmap,
   float min_y = triangle[0].position.y;
   float max_y = triangle[0].position.y;
   for (int i = 1; i < 3; i++) {
-    min_y = std::min(min_y, triangle[i].position.y);
-    max_y = std::max(max_y, triangle[i].position.y);
+    min_y = (std::min)(min_y, triangle[i].position.y);
+    max_y = (std::max)(max_y, triangle[i].position.y);
   }
   if (min_y == max_y)
     return;
 
-  int min_yi = std::max(static_cast<int>(floorf(min_y)), 0);
+  int min_yi = (std::max)(static_cast<int>(floorf(min_y)), 0);
   int max_yi = static_cast<int>(ceilf(max_y));
   if (max_yi >= pBitmap->GetHeight())
     max_yi = pBitmap->GetHeight() - 1;
@@ -390,8 +390,8 @@ void DrawGouraud(const RetainPtr<CFX_DIBitmap>& pBitmap,
       end_index = 0;
     }
 
-    int start_x = std::max(min_x, 0);
-    int end_x = std::min(max_x, pBitmap->GetWidth());
+    int start_x = (std::max)(min_x, 0);
+    int end_x = (std::min)(max_x, pBitmap->GetWidth());
 
     uint8_t* dib_buf =
         pBitmap->GetBuffer() + y * pBitmap->GetPitch() + start_x * 4;
@@ -646,7 +646,7 @@ struct Coon_Color {
   }
 
   int Distance(Coon_Color& o) {
-    return std::max({abs(comp[0] - o.comp[0]), abs(comp[1] - o.comp[1]),
+    return (std::max)({abs(comp[0] - o.comp[0]), abs(comp[1] - o.comp[1]),
                      abs(comp[2] - o.comp[2])});
   }
 

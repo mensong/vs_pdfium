@@ -115,7 +115,7 @@ NupPageSettings NupState::CalculatePageEdit(size_t iSubX,
 
   const float xScale = m_subPageSize.width / pagesize.width;
   const float yScale = m_subPageSize.height / pagesize.height;
-  settings.scale = std::min(xScale, yScale);
+  settings.scale = (std::min)(xScale, yScale);
 
   float subWidth = pagesize.width * settings.scale;
   float subHeight = pagesize.height * settings.scale;
@@ -615,7 +615,7 @@ bool CPDF_NPageToOneExporter::ExportNPagesToOne(
     pDestPageDict->SetRectFor(pdfium::page_object::kMediaBox, destPageRect);
     ByteString bsContent;
     size_t iInnerPageMax =
-        std::min(iOuterPage + nPagesPerSheet, pageNums.size());
+        (std::min)(iOuterPage + nPagesPerSheet, pageNums.size());
     for (size_t i = iOuterPage; i < iInnerPageMax; ++i) {
       auto* pSrcPageDict = src()->GetPageDictionary(pageNums[i] - 1);
       if (!pSrcPageDict)

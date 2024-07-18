@@ -288,7 +288,7 @@ uint32_t RunLengthDecode(pdfium::span<const uint8_t> src_span,
       i += 2;
     }
   }
-  return std::min(i + 1, src_span.size());
+  return (std::min)(i + 1, src_span.size());
 }
 
 std::unique_ptr<ScanlineDecoder> CreateFaxDecoder(

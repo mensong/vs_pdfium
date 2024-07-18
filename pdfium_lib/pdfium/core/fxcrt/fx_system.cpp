@@ -31,15 +31,15 @@ IntType FXSYS_StrToInt(const CharType* str) {
   IntType num = 0;
   while (*str && FXSYS_IsDecimalDigit(*str)) {
     IntType val = FXSYS_DecimalCharToInt(*str);
-    if (num > (std::numeric_limits<IntType>::max() - val) / 10) {
+    if (num > ((std::numeric_limits<IntType>::max)() - val) / 10) {
       if (neg && std::numeric_limits<IntType>::is_signed) {
         // Return MIN when the represented number is signed type and is smaller
         // than the min value.
-        return std::numeric_limits<IntType>::min();
+        return (std::numeric_limits<IntType>::min)();
       } else {
         // Return MAX when the represented number is signed type and is larger
         // than the max value, or the number is unsigned type and out of range.
-        return std::numeric_limits<IntType>::max();
+        return (std::numeric_limits<IntType>::max)();
       }
     }
 
@@ -91,20 +91,20 @@ STR_T FXSYS_IntToStr(T value, STR_T str, int radix) {
 int FXSYS_roundf(float f) {
   if (std::isnan(f))
     return 0;
-  if (f < static_cast<float>(std::numeric_limits<int>::min()))
-    return std::numeric_limits<int>::min();
-  if (f >= static_cast<float>(std::numeric_limits<int>::max()))
-    return std::numeric_limits<int>::max();
+  if (f < static_cast<float>((std::numeric_limits<int>::min)()))
+    return (std::numeric_limits<int>::min)();
+  if (f >= static_cast<float>((std::numeric_limits<int>::max)()))
+    return (std::numeric_limits<int>::max)();
   return static_cast<int>(round(f));
 }
 
 int FXSYS_round(double d) {
   if (std::isnan(d))
     return 0;
-  if (d < static_cast<double>(std::numeric_limits<int>::min()))
-    return std::numeric_limits<int>::min();
-  if (d >= static_cast<double>(std::numeric_limits<int>::max()))
-    return std::numeric_limits<int>::max();
+  if (d < static_cast<double>((std::numeric_limits<int>::min)()))
+    return (std::numeric_limits<int>::min)();
+  if (d >= static_cast<double>((std::numeric_limits<int>::max)()))
+    return (std::numeric_limits<int>::max)();
   return static_cast<int>(round(d));
 }
 

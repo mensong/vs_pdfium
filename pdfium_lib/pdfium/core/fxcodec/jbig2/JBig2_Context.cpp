@@ -1208,7 +1208,7 @@ bool CJBig2_Context::HuffmanAssignCode(JBig2HuffmanCode* SBSYMCODES,
                                        uint32_t NTEMP) {
   int LENMAX = 0;
   for (uint32_t i = 0; i < NTEMP; ++i)
-    LENMAX = std::max(SBSYMCODES[i].codelen, LENMAX);
+    LENMAX = (std::max)(SBSYMCODES[i].codelen, LENMAX);
 
   std::vector<int> LENCOUNT(LENMAX + 1);
   std::vector<int> FIRSTCODE(LENMAX + 1);

@@ -453,7 +453,7 @@ bool CPDF_Parser::ParseAndAppendCrossRefSubsectionData(
 
   uint32_t nBytesToRead = count;
   while (nBytesToRead > 0) {
-    const uint32_t block_size = std::min(nBytesToRead, 1024u);
+    const uint32_t block_size = (std::min)(nBytesToRead, 1024u);
     if (!m_pSyntax->ReadBlock(reinterpret_cast<uint8_t*>(buf.data()),
                               block_size * kEntryConstSize)) {
       return false;

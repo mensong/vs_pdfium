@@ -34,8 +34,8 @@ void PWL_FLOATRANGE::Reset() {
 }
 
 void PWL_FLOATRANGE::Set(float min, float max) {
-  fMin = std::min(min, max);
-  fMax = std::max(min, max);
+  fMin = (std::min)(min, max);
+  fMax = (std::max)(min, max);
 }
 
 bool PWL_FLOATRANGE::In(float x) const {
@@ -488,7 +488,7 @@ void CPWL_ScrollBar::SetScrollInfo(const PWL_SCROLL_INFO& info) {
 
   m_OriginInfo = info;
   float fMax =
-      std::max(0.0f, info.fContentMax - info.fContentMin - info.fPlateWidth);
+      (std::max)(0.0f, info.fContentMax - info.fContentMin - info.fPlateWidth);
   SetScrollRange(0, fMax, info.fPlateWidth);
   SetScrollStep(info.fBigStep, info.fSmallStep);
 }

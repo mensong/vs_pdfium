@@ -160,7 +160,7 @@ void CFX_SeekableStreamProxy::Seek(From eSeek, FX_FILESIZE iOffset) {
       FX_SAFE_FILESIZE new_pos = m_iPosition;
       new_pos += iOffset;
       m_iPosition =
-          new_pos.ValueOrDefault(std::numeric_limits<FX_FILESIZE>::max());
+          new_pos.ValueOrDefault((std::numeric_limits<FX_FILESIZE>::max)());
     } break;
   }
   m_iPosition =
@@ -178,7 +178,7 @@ size_t CFX_SeekableStreamProxy::ReadData(uint8_t* pBuffer, size_t iBufferSize) {
   DCHECK(iBufferSize > 0);
 
   iBufferSize =
-      std::min(iBufferSize, static_cast<size_t>(GetSize() - m_iPosition));
+      (std::min)(iBufferSize, static_cast<size_t>(GetSize() - m_iPosition));
   if (iBufferSize <= 0)
     return 0;
 
@@ -211,7 +211,7 @@ size_t CFX_SeekableStreamProxy::ReadBlock(wchar_t* pStr, size_t size) {
   }
 
   FX_FILESIZE pos = GetPosition();
-  size_t iBytes = std::min(size, static_cast<size_t>(GetSize() - pos));
+  size_t iBytes = (std::min)(size, static_cast<size_t>(GetSize() - pos));
   if (iBytes == 0)
     return 0;
 

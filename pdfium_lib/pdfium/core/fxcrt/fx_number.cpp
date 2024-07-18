@@ -66,7 +66,7 @@ FX_Number::FX_Number(ByteStringView strc)
   // We have a sign, so if the value was greater then the signed integer
   // limits, then we've overflowed and must reset to the default value.
   constexpr uint32_t uLimit =
-      static_cast<uint32_t>(std::numeric_limits<int>::max());
+      static_cast<uint32_t>((std::numeric_limits<int>::max)());
 
   if (uValue > (bNegative ? uLimit + 1 : uLimit))
     uValue = 0;
@@ -78,7 +78,7 @@ FX_Number::FX_Number(ByteStringView strc)
     // where |uValue| is 2147483648. When it gets casted to an int, |value|
     // becomes -2147483648. For this case, avoid undefined behavior, because
     // an int32_t cannot represent 2147483648.
-    static constexpr int kMinInt = std::numeric_limits<int>::min();
+    static constexpr int kMinInt = (std::numeric_limits<int>::min)();
     m_SignedValue = LIKELY(value != kMinInt) ? -value : kMinInt;
   } else {
     m_SignedValue = value;

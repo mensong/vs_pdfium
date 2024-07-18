@@ -60,13 +60,13 @@ int Blend(BlendMode blend_mode, int back_color, int src_color) {
       if (src_color == 255)
         return src_color;
 
-      return std::min(back_color * 255 / (255 - src_color), 255);
+      return (std::min)(back_color * 255 / (255 - src_color), 255);
     }
     case BlendMode::kColorBurn: {
       if (src_color == 0)
         return src_color;
 
-      return 255 - std::min((255 - back_color) * 255 / src_color, 255);
+      return 255 - (std::min)((255 - back_color) * 255 / src_color, 255);
     }
     case BlendMode::kHardLight:
       if (src_color < 128)
@@ -103,8 +103,8 @@ int Lum(RGB color) {
 
 RGB ClipColor(RGB color) {
   int l = Lum(color);
-  int n = std::min(color.red, std::min(color.green, color.blue));
-  int x = std::max(color.red, std::max(color.green, color.blue));
+  int n = (std::min)(color.red, (std::min)(color.green, color.blue));
+  int x = (std::max)(color.red, (std::max)(color.green, color.blue));
   if (n < 0) {
     color.red = l + ((color.red - l) * l / (l - n));
     color.green = l + ((color.green - l) * l / (l - n));
@@ -127,13 +127,13 @@ RGB SetLum(RGB color, int l) {
 }
 
 int Sat(RGB color) {
-  return std::max(color.red, std::max(color.green, color.blue)) -
-         std::min(color.red, std::min(color.green, color.blue));
+  return (std::max)(color.red, (std::max)(color.green, color.blue)) -
+         (std::min)(color.red, (std::min)(color.green, color.blue));
 }
 
 RGB SetSat(RGB color, int s) {
-  int min = std::min(color.red, std::min(color.green, color.blue));
-  int max = std::max(color.red, std::max(color.green, color.blue));
+  int min = (std::min)(color.red, (std::min)(color.green, color.blue));
+  int max = (std::max)(color.red, (std::max)(color.green, color.blue));
   if (min == max)
     return {0, 0, 0};
 

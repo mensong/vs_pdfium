@@ -820,7 +820,7 @@ void CFX_DIBBase::SetPalette(pdfium::span<const uint32_t> src_palette) {
   uint32_t pal_size = 1 << GetBPP();
   if (m_palette.empty())
     m_palette.resize(pal_size);
-  pal_size = std::min(pal_size, kPaletteSize);
+  pal_size = (std::min)(pal_size, kPaletteSize);
   for (size_t i = 0; i < pal_size; ++i)
     m_palette[i] = src_palette[i];
 }

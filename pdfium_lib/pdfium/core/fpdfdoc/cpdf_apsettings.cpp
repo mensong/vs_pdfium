@@ -57,9 +57,9 @@ FX_ARGB CPDF_ApSettings::GetColor(int& iColorType,
     float m = pEntry->GetNumberAt(1);
     float y = pEntry->GetNumberAt(2);
     float k = pEntry->GetNumberAt(3);
-    float r = 1.0f - std::min(1.0f, c + k);
-    float g = 1.0f - std::min(1.0f, m + k);
-    float b = 1.0f - std::min(1.0f, y + k);
+    float r = 1.0f - (std::min)(1.0f, c + k);
+    float g = 1.0f - (std::min)(1.0f, m + k);
+    float b = 1.0f - (std::min)(1.0f, y + k);
     return ArgbEncode(255, (int)(r * 255), (int)(g * 255), (int)(b * 255));
   }
   return color;

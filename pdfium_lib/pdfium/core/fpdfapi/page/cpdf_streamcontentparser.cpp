@@ -1012,12 +1012,12 @@ void CPDF_StreamContentParser::Handle_StrokePath() {
 }
 
 void CPDF_StreamContentParser::Handle_SetColor_Fill() {
-  int nargs = std::min(m_ParamCount, 4U);
+  int nargs = (std::min)(m_ParamCount, 4U);
   m_pCurStates->m_ColorState.SetFillColor(nullptr, GetNumbers(nargs));
 }
 
 void CPDF_StreamContentParser::Handle_SetColor_Stroke() {
-  int nargs = std::min(m_ParamCount, 4U);
+  int nargs = (std::min)(m_ParamCount, 4U);
   m_pCurStates->m_ColorState.SetStrokeColor(nullptr, GetNumbers(nargs));
 }
 

@@ -88,7 +88,7 @@ ByteString LoadTableFromTT(FILE* pFile,
     if (GET_TT_LONG(p) == tag) {
       uint32_t offset = GET_TT_LONG(p + 8);
       uint32_t size = GET_TT_LONG(p + 12);
-      if (offset > std::numeric_limits<uint32_t>::max() - size ||
+      if (offset > (std::numeric_limits<uint32_t>::max)() - size ||
           offset + size > fileSize || fseek(pFile, offset, SEEK_SET) < 0) {
         return ByteString();
       }

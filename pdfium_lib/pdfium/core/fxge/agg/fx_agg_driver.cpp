@@ -253,7 +253,7 @@ void RasterizeStroke(agg::rasterizer_scanline_aa* rasterizer,
     unit =
         1.0f / ((pObject2Device->GetXUnit() + pObject2Device->GetYUnit()) / 2);
   }
-  width = std::max(width, unit);
+  width = (std::max)(width, unit);
   if (!pGraphState->m_DashArray.empty()) {
     using DashConverter = agg::conv_dash<agg::path_storage>;
     DashConverter dash(*path_data);
@@ -264,7 +264,7 @@ void RasterizeStroke(agg::rasterizer_scanline_aa* rasterizer,
       float off = i * 2 + 1 == pGraphState->m_DashArray.size()
                       ? on
                       : pGraphState->m_DashArray[i * 2 + 1];
-      off = std::max(off, 0.0f);
+      off = (std::max)(off, 0.0f);
       dash.add_dash(on * scale, off * scale);
     }
     dash.dash_start(pGraphState->m_DashPhase * scale);
@@ -1243,7 +1243,7 @@ bool CFX_AggDeviceDriver::DrawPath(const CFX_PathData* pPathData,
   CFX_Matrix matrix1;
   CFX_Matrix matrix2;
   if (pObject2Device) {
-    matrix1.a = std::max(fabs(pObject2Device->a), fabs(pObject2Device->b));
+    matrix1.a = (std::max)(fabs(pObject2Device->a), fabs(pObject2Device->b));
     matrix1.d = matrix1.a;
     matrix2 = CFX_Matrix(
         pObject2Device->a / matrix1.a, pObject2Device->b / matrix1.a,
@@ -1333,8 +1333,8 @@ bool CFX_AggDeviceDriver::GetDIBits(const RetainPtr<CFX_DIBitmap>& pBitmap,
       return true;
   }
 
-  left = std::min(left, 0);
-  top = std::min(top, 0);
+  left = (std::min)(left, 0);
+  top = (std::min)(top, 0);
   if (m_bRgbByteOrder) {
     RgbByteOrderTransferBitmap(pBitmap, 0, 0, rect.Width(), rect.Height(),
                                pBack, left, top);

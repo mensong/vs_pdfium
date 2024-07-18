@@ -128,7 +128,7 @@ struct SaturationDefaultLimits : public std::numeric_limits<T> {
   static constexpr T Overflow() {
     return std::numeric_limits<T>::has_infinity
                ? std::numeric_limits<T>::infinity()
-               : std::numeric_limits<T>::max();
+               : (std::numeric_limits<T>::max)();
   }
   using std::numeric_limits<T>::lowest;
   static constexpr T Underflow() {

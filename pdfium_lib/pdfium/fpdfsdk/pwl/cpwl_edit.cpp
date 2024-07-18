@@ -573,8 +573,8 @@ void CPWL_Edit::OnInsertText(const CPVT_WordPlace& place,
 
 CPVT_WordRange CPWL_Edit::CombineWordRange(const CPVT_WordRange& wr1,
                                            const CPVT_WordRange& wr2) {
-  return CPVT_WordRange(std::min(wr1.BeginPos, wr2.BeginPos),
-                        std::max(wr1.EndPos, wr2.EndPos));
+  return CPVT_WordRange((std::min)(wr1.BeginPos, wr2.BeginPos),
+                        (std::max)(wr1.EndPos, wr2.EndPos));
 }
 
 CPVT_WordRange CPWL_Edit::GetLatinWordsRange(const CFX_PointF& point) const {

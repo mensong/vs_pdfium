@@ -28,7 +28,7 @@ CFX_Color ConvertCMYK2GRAY(float dC, float dM, float dY, float dK) {
     return CFX_Color(CFX_Color::kGray);
   return CFX_Color(
       CFX_Color::kGray,
-      1.0f - std::min(1.0f, 0.3f * dC + 0.59f * dM + 0.11f * dY + dK));
+      1.0f - (std::min)(1.0f, 0.3f * dC + 0.59f * dM + 0.11f * dY + dK));
 }
 
 CFX_Color ConvertGRAY2CMYK(float dGray) {
@@ -52,9 +52,9 @@ CFX_Color ConvertRGB2GRAY(float dR, float dG, float dB) {
 CFX_Color ConvertCMYK2RGB(float dC, float dM, float dY, float dK) {
   if (!InRange(dC) || !InRange(dM) || !InRange(dY) || !InRange(dK))
     return CFX_Color(CFX_Color::kRGB);
-  return CFX_Color(CFX_Color::kRGB, 1.0f - std::min(1.0f, dC + dK),
-                   1.0f - std::min(1.0f, dM + dK),
-                   1.0f - std::min(1.0f, dY + dK));
+  return CFX_Color(CFX_Color::kRGB, 1.0f - (std::min)(1.0f, dC + dK),
+                   1.0f - (std::min)(1.0f, dM + dK),
+                   1.0f - (std::min)(1.0f, dY + dK));
 }
 
 CFX_Color ConvertRGB2CMYK(float dR, float dG, float dB) {
@@ -64,7 +64,7 @@ CFX_Color ConvertRGB2CMYK(float dR, float dG, float dB) {
   float c = 1.0f - dR;
   float m = 1.0f - dG;
   float y = 1.0f - dB;
-  return CFX_Color(CFX_Color::kCMYK, c, m, y, std::min(c, std::min(m, y)));
+  return CFX_Color(CFX_Color::kCMYK, c, m, y, (std::min)(c, (std::min)(m, y)));
 }
 
 }  // namespace
@@ -146,17 +146,17 @@ CFX_Color CFX_Color::operator-(float fColorSub) const {
   switch (nColorType) {
     case CFX_Color::kTransparent:
       sRet.nColorType = CFX_Color::kRGB;
-      sRet.fColor1 = std::max(1.0f - fColorSub, 0.0f);
-      sRet.fColor2 = std::max(1.0f - fColorSub, 0.0f);
-      sRet.fColor3 = std::max(1.0f - fColorSub, 0.0f);
+      sRet.fColor1 = (std::max)(1.0f - fColorSub, 0.0f);
+      sRet.fColor2 = (std::max)(1.0f - fColorSub, 0.0f);
+      sRet.fColor3 = (std::max)(1.0f - fColorSub, 0.0f);
       break;
     case CFX_Color::kRGB:
     case CFX_Color::kGray:
     case CFX_Color::kCMYK:
-      sRet.fColor1 = std::max(fColor1 - fColorSub, 0.0f);
-      sRet.fColor2 = std::max(fColor2 - fColorSub, 0.0f);
-      sRet.fColor3 = std::max(fColor3 - fColorSub, 0.0f);
-      sRet.fColor4 = std::max(fColor4 - fColorSub, 0.0f);
+      sRet.fColor1 = (std::max)(fColor1 - fColorSub, 0.0f);
+      sRet.fColor2 = (std::max)(fColor2 - fColorSub, 0.0f);
+      sRet.fColor3 = (std::max)(fColor3 - fColorSub, 0.0f);
+      sRet.fColor4 = (std::max)(fColor4 - fColorSub, 0.0f);
       break;
   }
   return sRet;

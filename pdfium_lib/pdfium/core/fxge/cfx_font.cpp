@@ -31,8 +31,8 @@
 
 namespace {
 
-constexpr int kThousandthMinInt = std::numeric_limits<int>::min() / 1000;
-constexpr int kThousandthMaxInt = std::numeric_limits<int>::max() / 1000;
+constexpr int kThousandthMinInt = (std::numeric_limits<int>::min)() / 1000;
+constexpr int kThousandthMaxInt = (std::numeric_limits<int>::max)() / 1000;
 
 struct OUTLINE_PARAMS {
   CFX_PathData* m_pPath;
@@ -449,10 +449,10 @@ bool CFX_Font::GetGlyphBBox(uint32_t glyph_index, FX_RECT* pBBox) {
       pBBox->top = cbox.yMax * 1000 / pixel_size_y;
       pBBox->bottom = cbox.yMin * 1000 / pixel_size_y;
     }
-    pBBox->top = std::min(
+    pBBox->top = (std::min)(
         pBBox->top,
         static_cast<int32_t>(FXFT_Get_Face_Ascender(m_Face->GetRec())));
-    pBBox->bottom = std::max(
+    pBBox->bottom = (std::max)(
         pBBox->bottom,
         static_cast<int32_t>(FXFT_Get_Face_Descender(m_Face->GetRec())));
     FT_Done_Glyph(glyph);
@@ -727,7 +727,7 @@ int CFX_Font::GetWeightLevel(int charset, size_t index) {
 int CFX_Font::GetSkewFromAngle(int angle) {
   // |angle| is non-positive so |-angle| is used as the index. Need to make sure
   // |angle| != INT_MIN since -INT_MIN is undefined.
-  if (angle > 0 || angle == std::numeric_limits<int>::min() ||
+  if (angle > 0 || angle == (std::numeric_limits<int>::min)() ||
       static_cast<size_t>(-angle) >= pdfium::size(kAngleSkew)) {
     return -58;
   }

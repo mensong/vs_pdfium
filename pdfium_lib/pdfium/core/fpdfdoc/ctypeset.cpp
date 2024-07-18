@@ -245,8 +245,8 @@ CPVT_FloatRect CTypeset::CharArray() {
       pWord->fWordTail = 0;
     }
     x += fWordWidth;
-    fLineAscent = std::max(fLineAscent, fWordAscent);
-    fLineDescent = std::min(fLineDescent, fWordDescent);
+    fLineAscent = (std::max)(fLineAscent, fWordAscent);
+    fLineDescent = (std::min)(fLineDescent, fWordDescent);
   }
   pLine->m_LineInfo.nBeginWordIndex = 0;
   pLine->m_LineInfo.nEndWordIndex =
@@ -321,7 +321,7 @@ void CTypeset::SplitLines(bool bTypeset, float fFontSize) {
   int32_t nCharIndex = 0;
   float fWordWidth = 0;
   float fTypesetWidth =
-      std::max(m_pVT->GetPlateWidth() - m_pVT->GetLineIndent(), 0.0f);
+      (std::max)(m_pVT->GetPlateWidth() - m_pVT->GetLineIndent(), 0.0f);
   int32_t nTotalWords =
       pdfium::CollectionSize<int32_t>(m_pSection->m_WordArray);
   bool bOpened = false;
@@ -334,14 +334,14 @@ void CTypeset::SplitLines(bool bTypeset, float fFontSize) {
     }
     if (pWord) {
       if (bTypeset) {
-        fLineAscent = std::max(fLineAscent, m_pVT->GetWordAscent(*pWord));
-        fLineDescent = std::min(fLineDescent, m_pVT->GetWordDescent(*pWord));
+        fLineAscent = (std::max)(fLineAscent, m_pVT->GetWordAscent(*pWord));
+        fLineDescent = (std::min)(fLineDescent, m_pVT->GetWordDescent(*pWord));
         fWordWidth = m_pVT->GetWordWidth(*pWord);
       } else {
         fLineAscent =
-            std::max(fLineAscent, m_pVT->GetWordAscent(*pWord, fFontSize));
+            (std::max)(fLineAscent, m_pVT->GetWordAscent(*pWord, fFontSize));
         fLineDescent =
-            std::min(fLineDescent, m_pVT->GetWordDescent(*pWord, fFontSize));
+            (std::min)(fLineDescent, m_pVT->GetWordDescent(*pWord, fFontSize));
         fWordWidth = m_pVT->GetWordWidth(
             pWord->nFontIndex, pWord->Word, m_pVT->GetSubWord(),
             m_pVT->GetCharSpace(), fFontSize, pWord->fWordTail);
@@ -396,7 +396,7 @@ void CTypeset::SplitLines(bool bTypeset, float fFontSize) {
       }
       fMaxY += (fLineAscent + m_pVT->GetLineLeading());
       fMaxY -= fLineDescent;
-      fMaxX = std::max(fLineWidth, fMaxX);
+      fMaxX = (std::max)(fLineWidth, fMaxX);
       nLineHead = i;
       fLineWidth = 0.0f;
       fLineAscent = 0.0f;
@@ -422,7 +422,7 @@ void CTypeset::SplitLines(bool bTypeset, float fFontSize) {
     }
     fMaxY += (fLineAscent + m_pVT->GetLineLeading());
     fMaxY -= fLineDescent;
-    fMaxX = std::max(fLineWidth, fMaxX);
+    fMaxX = (std::max)(fLineWidth, fMaxX);
   }
   m_rcRet = CPVT_FloatRect(0, 0, fMaxX, fMaxY);
 }
@@ -432,7 +432,7 @@ void CTypeset::OutputLines() {
   DCHECK(m_pSection);
   float fMinX;
   float fLineIndent = m_pVT->GetLineIndent();
-  float fTypesetWidth = std::max(m_pVT->GetPlateWidth() - fLineIndent, 0.0f);
+  float fTypesetWidth = (std::max)(m_pVT->GetPlateWidth() - fLineIndent, 0.0f);
   switch (m_pVT->GetAlignment()) {
     default:
     case 0:

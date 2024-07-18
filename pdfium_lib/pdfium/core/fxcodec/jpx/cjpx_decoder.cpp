@@ -96,9 +96,9 @@ void sycc444_to_rgb(opj_image_t* img) {
   int offset = 1 << (prec - 1);
   int upb = (1 << prec) - 1;
   OPJ_UINT32 maxw =
-      std::min({img->comps[0].w, img->comps[1].w, img->comps[2].w});
+      (std::min)({img->comps[0].w, img->comps[1].w, img->comps[2].w});
   OPJ_UINT32 maxh =
-      std::min({img->comps[0].h, img->comps[1].h, img->comps[2].h});
+      (std::min)({img->comps[0].h, img->comps[1].h, img->comps[2].h});
   FX_SAFE_SIZE_T max_size = maxw;
   max_size *= maxh;
   max_size *= sizeof(int);
@@ -131,7 +131,7 @@ void sycc444_to_rgb(opj_image_t* img) {
 }
 
 bool sycc420_422_size_is_valid(opj_image_t* img) {
-  return img && img->comps[0].w != std::numeric_limits<OPJ_UINT32>::max() &&
+  return img && img->comps[0].w != (std::numeric_limits<OPJ_UINT32>::max)() &&
          (img->comps[0].w + 1) / 2 == img->comps[1].w &&
          img->comps[1].w == img->comps[2].w &&
          img->comps[1].h == img->comps[2].h;
@@ -139,7 +139,7 @@ bool sycc420_422_size_is_valid(opj_image_t* img) {
 
 bool sycc420_size_is_valid(opj_image_t* img) {
   return sycc420_422_size_is_valid(img) &&
-         img->comps[0].h != std::numeric_limits<OPJ_UINT32>::max() &&
+         img->comps[0].h != (std::numeric_limits<OPJ_UINT32>::max)() &&
          (img->comps[0].h + 1) / 2 == img->comps[1].h;
 }
 

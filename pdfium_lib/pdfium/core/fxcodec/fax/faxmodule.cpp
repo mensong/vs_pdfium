@@ -79,7 +79,7 @@ int FindBit(const uint8_t* data_buf, int max_pos, int start_pos, bool bit) {
   while (byte_pos < max_byte) {
     uint8_t data = data_buf[byte_pos] ^ bit_xor;
     if (data)
-      return std::min(byte_pos * 8 + OneLeadPos[data], max_pos);
+      return (std::min)(byte_pos * 8 + OneLeadPos[data], max_pos);
 
     ++byte_pos;
   }
@@ -110,7 +110,7 @@ void FaxG4FindB1B2(pdfium::span<const uint8_t> ref_buf,
 }
 
 void FaxFillBits(uint8_t* dest_buf, int columns, int startpos, int endpos) {
-  startpos = std::max(startpos, 0);
+  startpos = (std::max)(startpos, 0);
   endpos = pdfium::clamp(endpos, 0, columns);
   if (startpos >= endpos)
     return;
@@ -558,7 +558,7 @@ uint8_t* FaxDecoder::v_GetNextLine() {
 }
 
 uint32_t FaxDecoder::GetSrcOffset() {
-  return std::min(static_cast<size_t>((m_bitpos + 7) / 8), m_SrcSpan.size());
+  return (std::min)(static_cast<size_t>((m_bitpos + 7) / 8), m_SrcSpan.size());
 }
 
 void FaxDecoder::InvertBuffer() {

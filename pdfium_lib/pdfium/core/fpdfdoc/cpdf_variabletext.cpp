@@ -813,7 +813,7 @@ bool CPDF_VariableText::IsBigger(float fFontSize) const {
   CFX_SizeF szTotal;
   for (const auto& pSection : m_SectionArray) {
     CFX_SizeF size = pSection->GetSectionSize(fFontSize);
-    szTotal.width = std::max(size.width, szTotal.width);
+    szTotal.width = (std::max)(size.width, szTotal.width);
     szTotal.height += size.height;
     if (IsFloatBigger(szTotal.width, GetPlateWidth()) ||
         IsFloatBigger(szTotal.height, GetPlateHeight())) {
@@ -853,10 +853,10 @@ CPVT_FloatRect CPDF_VariableText::RearrangeSections(
     if (s == 0) {
       rcRet = rcSec;
     } else {
-      rcRet.left = std::min(rcSec.left, rcRet.left);
-      rcRet.top = std::min(rcSec.top, rcRet.top);
-      rcRet.right = std::max(rcSec.right, rcRet.right);
-      rcRet.bottom = std::max(rcSec.bottom, rcRet.bottom);
+      rcRet.left = (std::min)(rcSec.left, rcRet.left);
+      rcRet.top = (std::min)(rcSec.top, rcRet.top);
+      rcRet.right = (std::max)(rcSec.right, rcRet.right);
+      rcRet.bottom = (std::max)(rcSec.bottom, rcRet.bottom);
     }
     fPosY += rcSec.Height();
   }

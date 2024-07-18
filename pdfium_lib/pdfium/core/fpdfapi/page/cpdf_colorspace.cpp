@@ -397,7 +397,7 @@ class Matrix_3by3 {
 
 float RGB_Conversion(float colorComponent) {
   colorComponent = pdfium::clamp(colorComponent, 0.0f, 1.0f);
-  int scale = std::max(static_cast<int>(colorComponent * 1023), 0);
+  int scale = (std::max)(static_cast<int>(colorComponent * 1023), 0);
   if (scale < 192)
     return g_sRGBSamples1[scale] / 255.0f;
   return g_sRGBSamples2[scale / 4 - 48] / 255.0f;
@@ -1281,7 +1281,7 @@ bool CPDF_SeparationCS::GetRGB(pdfium::span<const float> pBuf,
   }
 
   // Using at least 16 elements due to the call m_pAltCS->GetRGB() below.
-  std::vector<float> results(std::max(m_pFunc->CountOutputs(), 16u));
+  std::vector<float> results((std::max)(m_pFunc->CountOutputs(), 16u));
   int nresults = 0;
   if (!m_pFunc->Call(pBuf.data(), 1, results.data(), &nresults) ||
       nresults == 0)
@@ -1349,7 +1349,7 @@ bool CPDF_DeviceNCS::GetRGB(pdfium::span<const float> pBuf,
     return false;
 
   // Using at least 16 elements due to the call m_pAltCS->GetRGB() below.
-  std::vector<float> results(std::max(m_pFunc->CountOutputs(), 16u));
+  std::vector<float> results((std::max)(m_pFunc->CountOutputs(), 16u));
   int nresults = 0;
   if (!m_pFunc->Call(pBuf.data(), CountComponents(), results.data(),
                      &nresults) ||

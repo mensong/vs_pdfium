@@ -116,9 +116,9 @@ MacroProps NumberPropertyMapper::oldToNew(const DecimalFormatProperties& propert
             minFrac = digits;
             maxFrac = digits;
         } else if (minFrac == -1) {
-            minFrac = std::min(maxFrac, digits);
+            minFrac = (std::min)(maxFrac, digits);
         } else /* if (maxFrac == -1) */ {
-            maxFrac = std::max(minFrac, digits);
+            maxFrac = (std::max)(minFrac, digits);
         }
     }
     // Validate min/max int/frac.
