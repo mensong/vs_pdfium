@@ -271,8 +271,8 @@ struct NarrowingRange {
     return value;
   }
 
-  static constexpr Dst max() { return Adjust((Bounds<Dst>::max)()); }
-  static constexpr Dst lowest() { return Adjust(Bounds<Dst>::lowest()); }
+  static constexpr Dst Max() { return Adjust((Bounds<Dst>::max)()); }
+  static constexpr Dst Lowest() { return Adjust(Bounds<Dst>::lowest()); }
 };
 
 template <typename Dst,
@@ -308,10 +308,10 @@ struct DstRangeRelationToSrcRangeImpl<Dst,
     using SrcLimits = std::numeric_limits<Src>;
     using DstLimits = NarrowingRange<Dst, Src, Bounds>;
     return RangeCheck(
-        static_cast<Dst>(SrcLimits::lowest()) >= DstLimits::lowest() ||
-            static_cast<Dst>(value) >= DstLimits::lowest(),
-        static_cast<Dst>(SrcLimits::max()) <= DstLimits::max() ||
-            static_cast<Dst>(value) <= DstLimits::max());
+        static_cast<Dst>(SrcLimits::lowest()) >= DstLimits::Lowest() ||
+            static_cast<Dst>(value) >= DstLimits::Lowest(),
+        static_cast<Dst>((SrcLimits::max)()) <= DstLimits::Max() ||
+            static_cast<Dst>(value) <= DstLimits::Max());
   }
 };
 
@@ -326,7 +326,7 @@ struct DstRangeRelationToSrcRangeImpl<Dst,
                                       NUMERIC_RANGE_NOT_CONTAINED> {
   static constexpr RangeCheck Check(Src value) {
     using DstLimits = NarrowingRange<Dst, Src, Bounds>;
-    return RangeCheck(value >= DstLimits::lowest(), value <= DstLimits::max());
+    return RangeCheck(value >= DstLimits::Lowest(), value <= DstLimits::Max());
   }
 };
 
@@ -342,8 +342,8 @@ struct DstRangeRelationToSrcRangeImpl<Dst,
   static constexpr RangeCheck Check(Src value) {
     using DstLimits = NarrowingRange<Dst, Src, Bounds>;
     return RangeCheck(
-        DstLimits::lowest() == Dst(0) || value >= DstLimits::lowest(),
-        value <= DstLimits::max());
+        DstLimits::Lowest() == Dst(0) || value >= DstLimits::Lowest(),
+        value <= DstLimits::Max());
   }
 };
 
@@ -358,11 +358,11 @@ struct DstRangeRelationToSrcRangeImpl<Dst,
   static constexpr RangeCheck Check(Src value) {
     using DstLimits = NarrowingRange<Dst, Src, Bounds>;
     using Promotion = decltype(Src() + Dst());
-    return RangeCheck(DstLimits::lowest() <= Dst(0) ||
+    return RangeCheck(DstLimits::Lowest() <= Dst(0) ||
                           static_cast<Promotion>(value) >=
-                              static_cast<Promotion>(DstLimits::lowest()),
+                              static_cast<Promotion>(DstLimits::Lowest()),
                       static_cast<Promotion>(value) <=
-                          static_cast<Promotion>(DstLimits::max()));
+                          static_cast<Promotion>(DstLimits::Max()));
   }
 };
 
@@ -380,12 +380,12 @@ struct DstRangeRelationToSrcRangeImpl<Dst,
     using DstLimits = NarrowingRange<Dst, Src, Bounds>;
     using Promotion = decltype(Src() + Dst());
     return RangeCheck(
-        value >= Src(0) && (DstLimits::lowest() == 0 ||
-                            static_cast<Dst>(value) >= DstLimits::lowest()),
-        static_cast<Promotion>(SrcLimits::max()) <=
-                static_cast<Promotion>(DstLimits::max()) ||
+        value >= Src(0) && (DstLimits::Lowest() == 0 ||
+                            static_cast<Dst>(value) >= DstLimits::Lowest()),
+        static_cast<Promotion>((SrcLimits::max)()) <=
+                static_cast<Promotion>(DstLimits::Max()) ||
             static_cast<Promotion>(value) <=
-                static_cast<Promotion>(DstLimits::max()));
+                static_cast<Promotion>(DstLimits::Max()));
   }
 };
 

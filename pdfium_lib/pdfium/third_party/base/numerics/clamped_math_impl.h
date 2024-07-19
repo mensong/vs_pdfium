@@ -29,7 +29,7 @@ constexpr T SaturatedNegWrapper(T value) {
   return MustTreatAsConstexpr(value) || !ClampedNegFastOp<T>::is_supported
              ? (NegateWrapper(value) != std::numeric_limits<T>::lowest()
                     ? NegateWrapper(value)
-                    : std::numeric_limits<T>::max())
+                    : (std::numeric_limits<T>::max)())
              : ClampedNegFastOp<T>::Do(value);
 }
 

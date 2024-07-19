@@ -158,7 +158,7 @@ constexpr bool CheckedMulImpl(T x, T y, T* result) {
   // After that it's an unsigned overflow check on the absolute value, with
   // a +1 bound for a negative result.
   return uy <= UnsignedDst(!std::is_signed<T>::value || is_negative) ||
-         ux <= (std::numeric_limits<T>::max() + UnsignedDst(is_negative)) / uy;
+         ux <= ((std::numeric_limits<T>::max)() + UnsignedDst(is_negative)) / uy;
 }
 
 template <typename T, typename U, class Enable = void>
@@ -565,7 +565,7 @@ class CheckedNumericState<T, NUMERIC_FLOATING> {
   constexpr bool is_valid() const {
     // Written this way because std::isfinite is not reliably constexpr.
     return MustTreatAsConstexpr(value_)
-               ? value_ <= std::numeric_limits<T>::max() &&
+               ? value_ <= (std::numeric_limits<T>::max)() &&
                      value_ >= std::numeric_limits<T>::lowest()
                : std::isfinite(value_);
   }
